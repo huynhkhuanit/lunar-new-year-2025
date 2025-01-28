@@ -1,0 +1,342 @@
+<!-- Create by huynhkhuanit -->
+
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Happy New Year 2025</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: linear-gradient(45deg, #1a1a1a, #000);
+                font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+                    "Helvetica Neue", sans-serif;
+                overflow: hidden;
+            }
+
+            .card {
+                cursor: pointer;
+                width: 300px;
+                height: 400px;
+                background: linear-gradient(135deg, #ff0000, #ff6b6b);
+                border-radius: 20px;
+                box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: transform 0.3s;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .card:hover {
+                transform: scale(1.05);
+            }
+
+            .card-text {
+                color: #fff;
+                font-size: 2em;
+                font-weight: bold;
+                text-align: center;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+                background-size: 200% 200%;
+            }
+
+            @keyframes gradient {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            .modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                z-index: 1000;
+            }
+
+            .modal-content {
+                position: relative;
+                width: 80%;
+                height: 80%;
+                margin: 5% auto;
+                background: url("/api/placeholder/800/600") center/cover;
+                border-radius: 20px;
+                padding: 20px;
+                text-align: center;
+                animation: modalOpen 1s ease-out;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            @keyframes modalOpen {
+                from {
+                    transform: scale(0);
+                    opacity: 0;
+                }
+                to {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+
+            .firework {
+                position: fixed;
+                pointer-events: none;
+                z-index: 1001;
+            }
+
+            .firework-particle {
+                position: absolute;
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+            }
+
+            @keyframes explode {
+                0% {
+                    transform: translate(0, 0);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translate(var(--tx), var(--ty));
+                    opacity: 0;
+                }
+            }
+
+            .greeting {
+                color: white;
+                font-size: 2.5em;
+                opacity: 0;
+                animation: fadeIn 2s forwards;
+                animation-delay: 1s;
+                padding: 20px;
+                max-width: 1000px;
+                margin: 0 auto;
+                line-height: 1.5;
+            }
+
+            .greeting span {
+                color: transparent;
+                background-color: #fad961;
+                background-image: linear-gradient(
+                    90deg,
+                    #fad961 0%,
+                    #f76b1c 100%
+                );
+
+                background-clip: text;
+                -webkit-background-clip: text;
+                font-weight: bold;
+                text-transform: uppercase;
+                background-size: 200% 200%;
+            }
+
+            .greeting p {
+                display: inline-block;
+                padding: 8px 25px;
+                color: #fff;
+                background: linear-gradient(141deg, #21a2ff, #8951ff 73.36%);
+                font-weight: bold;
+                background-size: 200% 200%;
+            }
+
+            @keyframes fadeIn {
+                to {
+                    opacity: 1;
+                }
+            }
+
+            .close-btn {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                color: white;
+                font-size: 30px;
+                cursor: pointer;
+                z-index: 1002;
+            }
+
+            @media screen and (max-width: 768px) { 
+                .greeting {
+                    font-size: 1.2rem;
+                    max-width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <div class="card-text">🎉 HAPPY NEW YEAR 2025 🎉</div>
+        </div>
+
+        <div class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <div class="greeting">
+                    ✨ <span>Chúc Mừng Năm Mới Ất Tỵ 2025!</span> ✨
+                    <br />
+                    Chúc bạn một năm <span>Ất Tỵ</span> rực rỡ, tài lộc dồi dào, sức khỏe dẻo
+                    dai, vạn sự như ý! Mong rằng năm mới mang đến bình an, hạnh
+                    phúc và thành công viên mãn! 🎊🎉
+                    <br />
+                    🐍 <span>Xuân an khang - Tết vạn phúc!</span> 🐍
+                    <br>
+                    ⭐ <p>by: huynhkhuanit</p>
+                </div>
+            </div>
+        </div>
+
+        <audio
+            id="newYearSound"
+            src="./audio/lunar-new-year.ogg"
+        ></audio>
+        <audio
+            id="fireworkSound"
+            src="https://cdnjs.cloudflare.com/ajax/libs/ion-sound/3.0.7/sounds/explosion.mp3"
+        ></audio>
+
+        <script>
+            const card = document.querySelector(".card");
+            const modal = document.querySelector(".modal");
+            const closeBtn = document.querySelector(".close-btn");
+            const sound = document.getElementById("newYearSound");
+            const fireworkSound = document.getElementById("fireworkSound");
+            let fireworksInterval;
+
+            function playFireworkSound() {
+                const sound = fireworkSound.cloneNode();
+                sound.volume = 0.3;
+                sound.play();
+                setTimeout(() => sound.remove(), 1000);
+            }
+
+            function createFirework() {
+                const colors = [
+                    "#ff0",
+                    "#f0f",
+                    "#0ff",
+                    "#0f0",
+                    "#ff0",
+                    "#f00",
+                    "#fff",
+                ];
+                const firework = document.createElement("div");
+                firework.className = "firework";
+
+                const startX = Math.random() * window.innerWidth;
+                firework.style.left = startX + "px";
+                firework.style.top = window.innerHeight + "px";
+                document.body.appendChild(firework);
+
+                firework.animate(
+                    [
+                        { transform: `translate(0, 0)` },
+                        {
+                            transform: `translate(0, -${
+                                window.innerHeight / 2
+                            }px)`,
+                        },
+                    ],
+                    {
+                        duration: 1000,
+                        easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+                    }
+                ).onfinish = () => {
+                    playFireworkSound();
+
+                    for (let i = 0; i < 40; i++) {
+                        const particle = document.createElement("div");
+                        particle.className = "firework-particle";
+                        particle.style.backgroundColor =
+                            colors[Math.floor(Math.random() * colors.length)];
+
+                        const angle = (i / 40) * Math.PI * 2;
+                        const distance = 150 + Math.random() * 100;
+                        const tx = Math.cos(angle) * distance;
+                        const ty = Math.sin(angle) * distance;
+
+                        particle.style.setProperty("--tx", `${tx}px`);
+                        particle.style.setProperty("--ty", `${ty}px`);
+
+                        firework.appendChild(particle);
+
+                        particle.animate(
+                            [
+                                { transform: "translate(0, 0)", opacity: 1 },
+                                {
+                                    transform: `translate(${tx}px, ${ty}px)`,
+                                    opacity: 0,
+                                },
+                            ],
+                            {
+                                duration: 1500,
+                                easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+                            }
+                        );
+                    }
+
+                    setTimeout(() => firework.remove(), 1500);
+                };
+            }
+
+            function startFireworks() {
+                if (fireworksInterval) clearInterval(fireworksInterval);
+
+                fireworksInterval = setInterval(() => {
+                    if (modal.style.display === "block") {
+                        createFirework();
+                    }
+                }, 800);
+            }
+
+            function stopFireworks() {
+                clearInterval(fireworksInterval);
+                document
+                    .querySelectorAll(".firework")
+                    .forEach((fw) => fw.remove());
+            }
+
+            card.addEventListener("click", () => {
+                modal.style.display = "block";
+                sound.volume = 0.5; 
+                sound.play();
+                startFireworks();
+            });
+
+            closeBtn.addEventListener("click", () => {
+                modal.style.display = "none";
+                stopFireworks();
+                sound.pause();
+                sound.currentTime = 0;
+            });
+
+            window.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                    stopFireworks();
+                    sound.pause();
+                    sound.currentTime = 0;
+                }
+            });
+        </script>
+    </body>
+</html>
